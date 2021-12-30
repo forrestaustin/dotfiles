@@ -1,6 +1,14 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+autoload -U vcs_info
+
+
+# initialize autocomplete
+autoload -U compinit add-zsh-hook
+compinit
+
+
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/forrestaustin/.oh-my-zsh"
 
@@ -127,8 +135,146 @@ role_ssh_dc() {
 alias ports='netstat -tulanp'
 alias cdev='cd ~/dev/'
 alias config='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME'
-alias config='/usr/bin/git --git-dir=/Users/forrestaustin/dotfiles/ --work-tree=/Users/forrestaustin'
 
 export DATA_BAG_PATH=/Users/forrestaustin/Documents/simplifi_code/chef-repo/data_bags
 export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
 
+git_status() {
+    cd -q "$1"
+    utils::is_git || return
+
+    vcs_info
+
+    local git_branch="$vcs_info_msg_0_"
+    git_branch="${git_branch#heads/}"
+    git_branch="${git_branch/.../}"
+
+    [[ -z "$git_branch" ]] && return
+
+    local INDEX git_status=""
+
+    GIT_SYMBOL="\ue725"
+    GIT_STATUS_ADDED=$(utils::print '002' '+')
+    GIT_STATUS_MODIFIED=$(utils::print '003' '!')
+    GIT_STATUS_UNTRACKED=$(utils::print '009' '?')
+    GIT_STATUS_RENAMED=$(utils::print '208' '»')
+    GIT_STATUS_DELETED=$(utils::print '017' '✘')
+    GIT_STATUS_STASHED=$(utils::print '003' '$')
+    GIT_STATUS_UNMERGED=$(utils::print '016' '=')
+    GIT_STATUS_AHEAD=$(utils::print '012' '⇡')
+    GIT_STATUS_BEHIND=$(utils::print '011' '⇣')
+    GIT_STATUS_DIVERGED=$(utils::print '012' '⇕')
+    GIT_STATUS_CLEAN=$(utils::print '002' '✔')
+
+    INDEX=$(command git status --porcelain -b 2>/dev/null)
+
+    # Check for untracked files
+    if $(echo "$INDEX" | command grep -E '^\?\? ' &> /dev/null); then
+        git_status="$GIT_STATUS_UNTRACKED$git_status"
+    fi
+
+    # Check for staged files
+    if $(echo "$INDEX" | command grep '^A[ MDAU] ' &> /dev/null); then
+        git_status="$GIT_STATUS_ADDED$git_status"
+    elif $(echo "$INDEX" | command grep '^M[ MD] ' &> /dev/null); then
+        git_status="$GIT_STATUS_ADDED$git_status"
+    elif $(echo "$INDEX" | command grep '^UA' &> /dev/null); then
+        git_status="$GIT_STATUS_ADDED$git_status"
+    fi
+
+    # Check for modified files
+    if $(echo "$INDEX" | command grep '^[ MARC ]M ' &> /dev/null); then
+        git_status="$GIT_STATUS_MODIFIED$git_status"
+    fi
+
+    # Check for renamed files
+    if $(echo "$INDEX" | command grep '^R[ MD] ' &> /dev/null); then
+        git_status="$GIT_STATUS_RENAMED$git_status"
+    fi
+
+    # Check for deleted files
+    if $(echo "$INDEX" | command grep '^[MARCDU ]D ' &> /dev/null); then
+        git_status="$GIT_STATUS_DELETED$git_status"
+    elif $(echo "$INDEX" | command grep '^D[ UM] ' &> /dev/null); then
+        git_status="$GIT_STATUS_DELETED$git_status"
+    fi
+
+    # Check for stashes
+    if $(command git rev-parse --verify refs/stash >/dev/null 2>&1); then
+        git_status="$GIT_STATUS_STASHED$git_status"
+    fi
+
+    # Check for unmerged files
+    if $(echo "$INDEX" | command grep '^U[UDA] ' &> /dev/null); then
+        git_status="$GIT_STATUS_UNMERGED$git_status"
+    elif $(echo "$INDEX" | command grep '^AA ' &> /dev/null); then
+        git_status="$GIT_STATUS_UNMERGED$git_status"
+    elif $(echo "$INDEX" | command grep '^DD ' &> /dev/null); then
+        git_status="$GIT_STATUS_UNMERGED$git_status"
+    elif $(echo "$INDEX" | command grep '^[DA]U ' &> /dev/null); then
+        git_status="$GIT_STATUS_UNMERGED$git_status"
+    fi
+
+    # Check whether branch is ahead
+    local is_ahead=false
+    if $(echo "$INDEX" | command grep '^## [^ ]\+ .*ahead' &> /dev/null); then
+        is_ahead=true
+    fi
+
+    # Check whether branch is behind
+    local is_behind=false
+    if $(echo "$INDEX" | command grep '^## [^ ]\+ .*behind' &> /dev/null); then
+        is_behind=true
+    fi
+
+    # Check wheather branch has diverged
+    if [[ "$is_ahead" == true && "$is_behind" == true ]]; then
+        git_status="$GIT_STATUS_DIVERGED$git_status"
+    else
+        [[ "$is_ahead" == true ]] && git_status="$GIT_STATUS_AHEAD$git_status"
+        [[ "$is_behind" == true ]] && git_status="$GIT_STATUS_BEHIND$git_status"
+    fi
+
+    [[ -n "$git_status" ]] || git_status="$GIT_STATUS_CLEAN"
+
+    utils::bold "$git_status"
+    utils::print '241' "$git_branch"
+}
+
+
+utils::exists() {
+    command -v "$1" > /dev/null 2>&1
+}
+
+utils::is_git() {
+    [[ $(command git rev-parse --is-inside-work-tree 2>/dev/null) == true ]]
+}
+
+utils::bold() {
+    echo -n "%B$1%b"
+}
+
+utils::print() {
+    local color content bold
+    [[ -n "$1" ]] && color="%F{$1}" || color="%f"
+    [[ -n "$2" ]] && content="$2" || content=""
+
+    [[ -z "$2" ]] && content="$1"
+
+    echo -n "$color"
+    echo -n "$content"
+    echo -n "%{%b%f%}"
+}
+
+# add color to man pages
+export MANROFFOPT='-c'
+export LESS_TERMCAP_mb=$(tput bold; tput setaf 2)
+export LESS_TERMCAP_md=$(tput bold; tput setaf 6)
+export LESS_TERMCAP_me=$(tput sgr0)
+export LESS_TERMCAP_so=$(tput bold; tput setaf 3; tput setab 4)
+export LESS_TERMCAP_se=$(tput rmso; tput sgr0)
+export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 7)
+export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)
+export LESS_TERMCAP_mr=$(tput rev)
+export LESS_TERMCAP_mh=$(tput dim)
+export LESS_TERMCAP_mh=$(tput dim)
