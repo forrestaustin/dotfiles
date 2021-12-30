@@ -114,8 +114,6 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 . /usr/local/opt/asdf/asdf.sh
 
-. /usr/local/opt/asdf/asdf.sh
-
 role_ssh() {
   hostnames=$(knife search "role:$1" -i 2>/dev/null)
   sifi_tmux $hostnames
@@ -128,10 +126,9 @@ role_ssh_dc() {
 
 alias ports='netstat -tulanp'
 alias cdev='cd ~/dev/'
+alias config='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME'
+alias config='/usr/bin/git --git-dir=/Users/forrestaustin/dotfiles/ --work-tree=/Users/forrestaustin'
 
 export DATA_BAG_PATH=/Users/forrestaustin/Documents/simplifi_code/chef-repo/data_bags
 export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
 
-alias config='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME'
-
-alias config='/usr/bin/git --git-dir=/Users/forrestaustin/dotfiles/ --work-tree=/Users/forrestaustin'
