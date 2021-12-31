@@ -4,6 +4,31 @@
 autoload -U vcs_info
 
 
+########################################################
+# Configuration
+########################################################
+
+COLOR_BLACK="\e[0;30m"
+COLOR_BLUE="\e[0;34m"
+COLOR_GREEN="\e[0;32m"
+COLOR_CYAN="\e[0;36m"
+COLOR_PINK="\e[0;35m"
+COLOR_RED="\e[0;31m"
+COLOR_PURPLE="\e[0;35m"
+COLOR_BROWN="\e[0;33m"
+COLOR_LIGHTGRAY="\e[0;37m"
+COLOR_DARKGRAY="\e[1;30m"
+COLOR_LIGHTBLUE="\e[1;34m"
+COLOR_LIGHTGREEN="\e[1;32m"
+COLOR_LIGHTCYAN="\e[1;36m"
+COLOR_LIGHTRED="\e[1;31m"
+COLOR_LIGHTPURPLE="\e[1;35m"
+COLOR_YELLOW="\e[1;33m"
+COLOR_WHITE="\e[1;37m"
+COLOR_NONE="\e[0m"
+
+
+
 # initialize autocomplete
 autoload -U compinit add-zsh-hook
 compinit
@@ -16,7 +41,7 @@ export ZSH="/Users/forrestaustin/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="spaceship"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 # ZSH_THEME="random"
 
 # Random
@@ -285,3 +310,5 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
         eval "$("$BASE16_SHELL/profile_helper.sh")"
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

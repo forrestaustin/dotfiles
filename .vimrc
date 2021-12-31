@@ -21,6 +21,7 @@ Plugin 'slashmili/alchemist.vim'
 Plugin 'elixir-editors/vim-elixir'
 Plugin 'liuchengxu/space-vim-dark'
 Plugin 'neoclide/coc.nvim'
+Plugin 'chriskempson/base16-vim'
 
 call vundle#end()
 call plug#begin('~/.vim/plugged')
@@ -87,7 +88,6 @@ set foldnestmax=10
 set nofoldenable
 set foldlevel=2
 
-color space-vim-dark
 set termguicolors
 hi LineNr ctermbg=NONE guibg=NONE
 syntax on
