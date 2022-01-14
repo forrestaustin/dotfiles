@@ -1,0 +1,148 @@
+// Place your key bindings in this file to override the defaultsauto[]
+[
+    {
+        "key": "alt+z alt+z",
+        "command": "workbench.action.installCommandLine"
+    },
+    {
+        "key": "ctrl+w",
+        "command": "-workbench.action.closeWindow",
+        "when": "!editorIsOpen && !multipleEditorGroups"
+    },
+    {
+      "key": "ctrl+w",
+      "command": "workbench.action.focusActiveEditorGroup",
+      "when": "filesExplorerFocus || terminalFocus"
+    },
+    {
+      "key": "ctrl+t",
+      "command": "workbench.action.terminal.focus"
+    },
+    {
+      "key": "ctrl+shift+t",
+      "command": "workbench.action.closePanel",
+      "when": "terminalFocus || editorTextFocus"
+    },
+    {
+      "key": "ctrl+q ctrl+q",
+      "command": "workbench.action.toggleMaximizedPanel",
+      "when": "terminalFocus"
+    },
+    {
+      "key": "i",
+      "command": "explorer.openToSide",
+      "when": "explorerViewletFocus && explorerViewletVisible && !inputFocus"
+    },
+    {
+      "key": "ctrl+tab",
+      "command": "workbench.action.quickOpenPreviousRecentlyUsedEditor",
+      "when": "!inEditorsPicker"
+    },
+    // allows nav across editors in diff groups (might want to make this default ctrl tab)
+    {
+      "key": "ctrl+shift+tab",
+      "command": "workbench.action.quickOpenLeastRecentlyUsedEditor",
+      "when": "!inEditorsPicker"
+    },
+    {
+      "key": "cmd+f10",
+      "command": "workbench.action.splitEditorOrthogonal" // split up and down
+    },
+    {
+      "key": "cmd+k cmd+\\",
+      "command": "-workbench.action.splitEditorOrthogonal" // split columnwise
+    },
+    {
+      "key": "cmd+e cmd+m",
+      "command": "workbench.action.minimizeOtherEditors",
+      "when": "!terminalFocus"
+    },
+    {
+      "key": "ctrl+e ctrl+n",
+      "command": "workbench.action.maximizeEditor"
+    },
+    {
+      "key": "ctrl+e ctrl+e",
+      "command": "workbench.action.evenEditorWidths"
+    },
+    {
+      "key": "cmd+e cmd+c",
+      "command": "workbench.files.action.collapseExplorerFolders"
+    },
+    {
+      "key": "f1 f1",
+      "command": "workbench.action.switchWindow"
+    },
+    {
+      "key": "ctrl+w",
+      "command": "-workbench.action.switchWindow"
+    },
+    {
+      "key": "alt+tab",
+      "command": "workbench.action.quickSwitchWindow"
+    },
+    {
+      "key": "alt+n",
+      "command": "workbench.action.newWindowTab"
+    },
+    {
+      "key": "cmd+shift+m",
+      "command": "workbench.action.mergeAllWindowTabs"
+    },
+    {
+      "key": "cmd+l cmd+l",
+      "command": "workbench.action.moveActiveEditorGroupLeft"
+    },
+    {
+      "key": "cmd+k left",
+      "command": "-workbench.action.moveActiveEditorGroupLeft"
+    },
+    {
+      "key": "cmd+r cmd+r",
+      "command": "workbench.action.moveActiveEditorGroupRight"
+    },
+    {
+      "key": "cmd+k right",
+      "command": "-workbench.action.moveActiveEditorGroupRight"
+    },
+    {
+      "key": "cmd+e cmd+d",
+      "command": "workbench.action.moveActiveEditorGroupDown"
+    },
+    {
+      "key": "cmd+k down",
+      "command": "-workbench.action.moveActiveEditorGroupDown"
+    },
+    {
+      "key": "cmd+e cmd+u",
+      "command": "workbench.action.moveActiveEditorGroupUp"
+    },
+    {
+      "key": "cmd+k up",
+      "command": "-workbench.action.moveActiveEditorGroupUp"
+    },
+    {
+      "key": "f10 f10",
+      "command": "explorer.newFolder"
+    },
+    {
+      "key": "cmd+n",
+      "command": "extension.advancedNewFile"
+    },
+    {
+      "key": "cmd+o", // This overrides default open file behavior that comes with vscode
+      "command": "workbench.action.quickOpenPreviousEditor" // would be better to use <leader> o here
+    },
+    {
+      "key": "cmd+e cmd+e",
+      "command": "workbench.action.focusLastEditorGroup"
+    },
+    {
+      "key": "cmd+t cmd+t",
+      "command": "terminal.toggleVisibility"
+    },
+    {
+      "key": "cmd+t cmd+d",
+      "command": "workbench.view.extension.todo-tree-container"
+    },
+]

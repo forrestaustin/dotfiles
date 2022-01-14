@@ -143,6 +143,7 @@ source $ZSH/oh-my-zsh.sh
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+bindkey -v
 
 
 . /usr/local/opt/asdf/asdf.sh
@@ -160,6 +161,11 @@ role_ssh_dc() {
 alias ports='netstat -tulanp'
 alias cdev='cd ~/dev/'
 alias config='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME'
+alias cva='cd ~/Documents/simplifi_code/backend_team/'
+alias vau='cd ~/Documents/simplifi_code/backend_team && vagrant up'
+alias vad='cd ~/Documents/simplifi_code/backend_team && vagrant down'
+alias glogin='gcloud auth login && gcloud auth application-default login'
+alias ezsh='vim ~/.zshrc'
 
 export DATA_BAG_PATH=/Users/forrestaustin/Documents/simplifi_code/chef-repo/data_bags
 export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
@@ -312,3 +318,4 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+

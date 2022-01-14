@@ -13,14 +13,14 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'flazz/vim-colorschemes'
-Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+"nvim is not liking powerline
+"Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'scrooloose/nerdtree'
 Plugin 'vimwiki/vimwiki'
 Plugin 'ycm-core/YouCompleteMe'
 Plugin 'slashmili/alchemist.vim'
 Plugin 'elixir-editors/vim-elixir'
 Plugin 'liuchengxu/space-vim-dark'
-Plugin 'neoclide/coc.nvim'
 Plugin 'chriskempson/base16-vim'
 
 call vundle#end()
@@ -54,6 +54,9 @@ if executable('ag')
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
 endif
+
+" Have same behavior as C and D
+nnoremap Y y$
 
 "split navigations
 nnoremap <leader>j <C-W><C-J>

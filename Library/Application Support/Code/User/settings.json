@@ -1,0 +1,209 @@
+{
+    "workbench.colorTheme": "Dracula Soft",
+    "workbench.colorCustomizations": {
+        "terminal.selectionBackground": "#33ff00c9"
+    },
+    "vim.leader": "<space>",
+    "vim.easymotion": true,
+    "vim.easymotionMarkerBackgroundColor": "white",
+    "vim.incsearch": true,
+    "vim.useSystemClipboard": true,
+    "window.nativeTabs": true,
+    "python.defaultInterpreterPath": "/Users/forrestaustin/.pyenv/versions/3.6.8/bin/python",
+    "newFile.defaultBaseFileName": "newFile",
+    "newFile.relativeTo": "file", // "root" or "project"
+    "newFile.defaultFileExtension": ".ts",
+    "newFile.rootDirectory": "~",
+    "newFile.showPathRelativeTo": "root", // "project" or "none"
+    "newFile.expandBraces": false,
+    "workbench.preferredDarkColorTheme": "Panda Syntax",
+    "python.showStartPage": false, // setting to true will allow for creating multiple files such as `new-folder/{file1,file2}.js`
+    "vim.insertModeKeyBindings": [
+        {
+            "before": ["j", "j"],
+            "after": ["<esc>"]
+        }
+    ],
+    "vim.normalModeKeyBindings": [
+    {
+        "before": ["Z", "Z"],
+        "commands": [
+            ":wq"
+        ]
+    },
+    {
+        "before": ["leader", "w"],
+        "commands": [
+        "workbench.action.files.save",
+        ]
+    },
+    {
+        "before": ["leader", "a"],
+        "commands": [
+        "workbench.view.explorer"
+        ]
+    },
+    {
+        "before": ["leader", "h"],
+        "commands": [
+        "workbench.action.focusNextGroup" // hop back and forth between panels
+        ]
+    },
+    {
+        "before": ["leader", "H"],
+        "commands": [
+        "workbench.action.focusPreviousGroup" // hop back and forth between panels
+        ]
+    },
+    {
+        "before": ["leader", "p"],
+        "commands": [
+        "workbench.action.quickOpenPreviousRecentlyUsedEditor"
+        ]
+    },
+    {
+        "before": ["leader", "f"],
+        "commands": [
+        "workbench.action.closeActivePinnedEditor"
+        ]
+    },
+    {
+        "before": ["leader", "u"],
+        "commands": [
+        "workbench.action.reopenClosedEditor"
+        ]
+    },
+    {
+        "before": ["leader", "v"],
+        "commands": [
+        "workbench.action.splitEditorOrthogonal"
+        ]
+    },
+    {
+        "before": ["leader", "z"],
+        "commands": [
+        "workbench.action.toggleZenMode"
+        ]
+    },
+    {
+        "before": ["leader", "leader"],
+        "commands": [
+        "workbench.action.toggleSidebarVisibility",
+        "workbench.action.closePanel"
+        ]
+    },
+    {
+        "before": ["leader", "q"],
+        "commands": [
+        "workbench.action.minimizeOtherEditors"
+        ]
+    },
+    {
+        "before": ["leader", "s"],
+        "commands": [
+        "workbench.action.findInFiles"
+        ]
+    },
+    {
+        "before": ["leader", "e"],
+        "commands": [
+        "workbench.action.evenEditorWidths"
+        ]
+    },
+    ],
+    "mssql.connections": [
+		{
+			"server": "{{put-server-name-here}}",
+			"database": "{{put-database-name-here}}",
+			"user": "{{put-username-here}}",
+			"password": "{{put-password-here}}"
+		}
+	],
+    "code-runner.runInTerminal": true,
+    "C_Cpp.default.cppStandard": "c++17",
+    "C_Cpp.default.cStandard": "c11",
+    "C_Cpp.updateChannel": "Insiders",
+    "code-runner.executorMap": {
+        "javascript": "node",
+        "java": "cd $dir && javac $fileName && java $fileNameWithoutExt",
+        "c": "cd $dir && gcc $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+        "cpp": "cd $dir && g++ -std=c++17 $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+        "objective-c": "cd $dir && gcc -framework Cocoa $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+        "php": "php",
+        "python": "python3 -u",
+        "perl": "perl",
+        "perl6": "perl6",
+        "ruby": "ruby",
+        "go": "go run",
+        "lua": "lua",
+        "groovy": "groovy",
+        "powershell": "powershell -ExecutionPolicy ByPass -File",
+        "bat": "cmd /c",
+        "shellscript": "bash",
+        "fsharp": "fsi",
+        "csharp": "scriptcs",
+        "vbscript": "cscript //Nologo",
+        "typescript": "ts-node",
+        "coffeescript": "coffee",
+        "scala": "scala",
+        "swift": "swift",
+        "julia": "julia",
+        "crystal": "crystal",
+        "ocaml": "ocaml",
+        "r": "Rscript",
+        "applescript": "osascript",
+        "clojure": "lein exec",
+        "haxe": "haxe --cwd $dirWithoutTrailingSlash --run $fileNameWithoutExt",
+        "rust": "cd $dir && rustc $fileName && $dir$fileNameWithoutExt",
+        "racket": "racket",
+        "scheme": "csi -script",
+        "ahk": "autohotkey",
+        "autoit": "autoit3",
+        "dart": "dart",
+        "pascal": "cd $dir && fpc $fileName && $dir$fileNameWithoutExt",
+        "d": "cd $dir && dmd $fileName && $dir$fileNameWithoutExt",
+        "haskell": "runhaskell",
+        "nim": "nim compile --verbosity:0 --hints:off --run",
+        "lisp": "sbcl --script",
+        "kit": "kitc --run",
+        "v": "v run",
+        "sass": "sass --style expanded",
+        "scss": "scss --style expanded",
+        "less": "cd $dir && lessc $fileName $fileNameWithoutExt.css",
+        "FortranFreeForm": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+        "fortran-modern": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+        "fortran_fixed-form": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+        "fortran": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt"
+    },
+    "todo-tree.tree.showScanModeButton": false,
+    "remote.SSH.configFile": "/Users/forrestaustin/.ssh/bidder_vagrant_config",
+    "vim.commandLineModeKeyBindings": [
+    ],
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+	"editor.cursorStyle": "line",
+    "editor.lineNumbers": "on",
+    "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
+    "editor.wordWrap": "off",
+    "todo-tree.general.tags": [
+        "BUG",
+        "HACK",
+        "FIXME",
+        "TODO",
+        "XXX",
+        "[ ]",
+        "[x]"
+    ],
+    "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+	"files.associations": {
+		"*.py": "python"
+	},
+	"security.workspace.trust.untrustedFiles": "open",
+    "jupyter.askForKernelRestart": false,
+    "editor.stickyTabStops": true
+}
