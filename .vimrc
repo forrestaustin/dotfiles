@@ -95,4 +95,13 @@ set termguicolors
 hi LineNr ctermbg=NONE guibg=NONE
 syntax on
 
+"Hybrid line numners
 set relativenumber
+set nu
+"This is supposed to toggle between relative and abs line numbers based on if
+"tab is in focus or not
+:augroup numbertoggle
+:  autocmd!
+:  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
+:  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
+:augroup END

@@ -166,6 +166,8 @@ alias vau='cd ~/Documents/simplifi_code/backend_team && vagrant up'
 alias vad='cd ~/Documents/simplifi_code/backend_team && vagrant down'
 alias glogin='gcloud auth login && gcloud auth application-default login'
 alias ezsh='vim ~/.zshrc'
+alias tmux="TERM=screen-256color-bce tmux"
+
 
 export DATA_BAG_PATH=/Users/forrestaustin/Documents/simplifi_code/chef-repo/data_bags
 export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
