@@ -1,6 +1,5 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 autoload -U vcs_info
 
 
@@ -138,15 +137,14 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias zshconfig="mate ~/.zshrc"
+alias ohmyzsh="mate ~/.oh-my-zsh"
+alias python="python3"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 bindkey -v
 
-
-. /usr/local/opt/asdf/asdf.sh
 
 role_ssh() {
   hostnames=$(knife search "role:$1" -i 2>/dev/null)
@@ -321,3 +319,50 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# Fix bash vim mode not deleting history searches
+set backspace=indent,eol,start
+
+# This is something you end up needing to run multiple times/day:
+alias glogin='gcloud auth login && gcloud auth application-default login'
+
+# This allows you to set the default project without knowing the random
+# string on the end
+gprj() {
+  project_name=$1
+  project_id=$(gcloud projects list | grep -E "^${project_name}-[0-9a-f]{4,8} " | cut -d' ' -f 1)
+  echo "Setting project to '${project_id}'"
+  gcloud config set project $project_id
+}
+
+# If your instances are named correctly, you can get to them with this function.
+# This assumes your default project is set to the correct value
+gssh() {
+  host=$1
+  zone=$(ruby -e 'puts ARGV[0].split("-")[-4..-2].join("-")' $host)
+  gcloud compute ssh --internal-ip --zone=$zone $host
+}
+
+
+# added by travis gem
+[ ! -s /Users/forrestaustin/.travis/travis.sh ] || source /Users/forrestaustin/.travis/travis.sh
+
+# auto-completion helpers
+source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
+source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
+
+# python repl autocompletion
+export PYTHONSTARTUP=~/.pythonrc
+# Bad hack to try and fix asdf
+. /usr/local/opt/asdf/libexec/asdf.sh
+
+# Hope I don't regret this
+alias e=nvim
+fpath=(~/.zsh.d/ $fpath)
+
+
+mkcd ()
+{
+  mkdir -p -- "$1" && cd -P -- "$1"
+}
+
+alias edotfiles='e ~/.zshrc'
