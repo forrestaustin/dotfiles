@@ -79,7 +79,7 @@ map - <C-W>-
 map + <C-W>+
 
 nnoremap <leader>gd :GoDef<Enter>
-nnoremap <leader>pt :NERDTreeToggle<Enter>
+nnoremap <leader>tt :NERDTreeToggle<Enter>
 nnoremap <leader>pv :NERDTreeFind<CR>
 nnoremap <leader>vr :vertical resize 30<CR>
 nnoremap <leader>r+ :vertical resize +5<CR>
@@ -105,3 +105,7 @@ set nu
 :  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
 :  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
 :augroup END
+
+" This better displays tab completion options
+set wildmode=longest,list,full
+set wildmenu

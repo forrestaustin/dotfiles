@@ -1,0 +1,14 @@
+[user]
+	name = Forrest Austin
+	email = forrest@simpli.fi
+[pull]
+	rebase = true
+
+[alias]
+    patch = !git --no-pager diff --no-color
+	dsf = diff --color
+
+[pager]
+  diff = diff-so-fancy | less --tabs=4 -RFXS --pattern '^(Date|added|deleted|modified): '
+	dsf = diff-so-fancy | less --tabs=4 RFXS
+
